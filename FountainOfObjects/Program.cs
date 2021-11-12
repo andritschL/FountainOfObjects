@@ -100,6 +100,16 @@ namespace FountainOfObjects
                 }
                 return adjacentRooms;
             }
+
+            public void displayAdjacentRooms(List<Room> adjacentRooms)
+            {
+                foreach (Room room in adjacentRooms)
+                {
+                    string sound = room.getRoomSound();
+                    string smell = room.getRoomSmell();
+
+                }
+            }
         }
 
 
