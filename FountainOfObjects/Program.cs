@@ -12,8 +12,11 @@ namespace FountainOfObjects
             // populate rooms list with Rooms.  Rooms are populated with coordinates and all aspects of room type
             List<Room> rooms = grid.createGameSpaces();
             Player player = new Player();
+            GamePlay gamePlay = new GamePlay();
             player.currentRoom = rooms[0];
-          
+            Room currentRoom = player.currentRoom;
+            List<Room> adRooms = gamePlay.getAdjacentRooms(rooms, currentRoom);
+            Console.WriteLine(adRooms.Count);
         }
 
         public class Player
@@ -72,11 +75,30 @@ namespace FountainOfObjects
 
         public class GamePlay
         {
-            public bool checkIfAdjacent(List<Room> rooms, int x, int y)
+            public List<Room> getAdjacentRooms(List<Room> rooms, Room playerRoom)
             {
-                switch (x)
+                List<Room> adjacentRooms = new List<Room>();
+                foreach (Room room in rooms)
                 {
+                    if (room.xCoordinate == playerRoom.xCoordinate + 1 && room.yCoordinate == playerRoom.yCoordinate)
+                    {
+                        adjacentRooms.Add(room);
+                        Console.WriteLine("x = " + room.xCoordinate + "y = " + room.yCoordinate);
+                    } else if (room.xCoordinate == playerRoom.xCoordinate - 1 && room.yCoordinate == playerRoom.yCoordinate)
+                    {
+                        adjacentRooms.Add(room);
+                        Console.WriteLine("x = " + room.xCoordinate + "y = " + room.yCoordinate);
+                    } else if (room.yCoordinate == playerRoom.yCoordinate + 1 && room.xCoordinate == playerRoom.xCoordinate)
+                    {
+                        adjacentRooms.Add(room);
+                        Console.WriteLine("x = " + room.xCoordinate + "y = " + room.yCoordinate);
+                    } else if (room.yCoordinate == playerRoom.yCoordinate - 1 && room.xCoordinate == playerRoom.xCoordinate)
+                    {
+                        adjacentRooms.Add(room);
+                        Console.WriteLine("x = " + room.xCoordinate + "y = " + room.yCoordinate);
+                    }
                 }
+                return adjacentRooms;
             }
         }
 
