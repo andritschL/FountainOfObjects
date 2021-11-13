@@ -16,7 +16,7 @@ namespace FountainOfObjects
             player.currentRoom = rooms[0];
             Room currentRoom = player.currentRoom;
             List<Room> adRooms = gamePlay.getAdjacentRooms(rooms, currentRoom);
-            Console.WriteLine(adRooms.Count);
+            gamePlay.displayAdjacentRooms(adRooms, currentRoom);
         }
 
         public class Player
@@ -101,13 +101,28 @@ namespace FountainOfObjects
                 return adjacentRooms;
             }
 
-            public void displayAdjacentRooms(List<Room> adjacentRooms)
+            public void displayAdjacentRooms(List<Room> adjacentRooms, Room currentRoom)
             {
                 foreach (Room room in adjacentRooms)
                 {
                     string sound = room.getRoomSound();
                     string smell = room.getRoomSmell();
+                    string direction = ""; 
+                    if (room.xCoordinate == currentRoom.xCoordinate + 1)
+                    {
+                        direction = "east";
+                    } else if (room.xCoordinate == currentRoom.xCoordinate - 1)
+                    {
+                        direction = "west";
+                    } else if (room.yCoordinate == currentRoom.yCoordinate + 1)
+                    {
+                        direction = "north";
+                    } else if (room.yCoordinate == currentRoom.xCoordinate - 1)
+                    {
+                        direction = "south";
+                    }
 
+                    Console.WriteLine("Room to the " + direction + ": " + sound + " :: " + smell);
                 }
             }
         }
