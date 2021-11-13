@@ -1,7 +1,8 @@
-﻿using System;
+﻿using FountainOfObjects.Rooms;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-
+ 
 namespace FountainOfObjects
 {
     internal class Program
@@ -22,13 +23,6 @@ namespace FountainOfObjects
         public class Player
         {
             public Room currentRoom { get; set; }
-
-        }
-
-        public interface ICoordinate
-        {
-            public int xCoordinate { get; set; }    
-            public int yCoordinate { get; set; }
 
         }
 
@@ -124,81 +118,6 @@ namespace FountainOfObjects
 
                     Console.WriteLine("Room to the " + direction + ": " + sound + " :: " + smell);
                 }
-            }
-        }
-
-
-        public class Room : ICoordinate
-        {
-            public int xCoordinate { get; set; }
-            public int yCoordinate { get; set; }
-            bool playerInRoom { get; set; }
-
-            public virtual string getRoomSound()
-            {
-                string sound = "all is quiet";
-                return sound;
-            }
-
-            public virtual string getRoomSmell()
-            {
-                string smell = "no smell";
-                return smell;
-            }
-
-            public virtual string getRoomSight()
-            {
-                string sight = "can't see a thing";
-                return sight;
-            }
-            
-        }
-
-        public class FountainOfObjects : Room, ICoordinate
-        {
-            public bool isActivated { get; set; }
-            new int xCoordinate = 0;
-            new int yCoordinate = 2;
-
-           public override string getRoomSound()
-            {
-                string sound;
-                if (isActivated)
-                {
-                    sound = "rushing water";
-                } else
-                {
-                    sound = "dripping water";
-                }
-                return sound;
-            }
-
-            public override string getRoomSmell()
-            {
-                string roomSmell = "moist";
-                return roomSmell;
-            }
-        }
-
-        public class CavernEntrance : Room, ICoordinate
-        {
-            new int xCoordinate = 0;
-            new int yCoordinate = 0;
-
-            public override string getRoomSound()
-            {
-                string sound = "birds?";
-                return sound;
-            }
-            public override string getRoomSmell()
-            {
-                string smell = "Smells like fresh air";
-                return smell;
-            }
-            public override string getRoomSight()
-            {
-                string sight = "There is light!";
-                return sight;
             }
         }
     }
