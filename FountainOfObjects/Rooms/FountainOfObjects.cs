@@ -12,8 +12,8 @@ namespace FountainOfObjects
     internal class FountainOfObjects : Room, ICoordinate
     {
         public bool isActivated { get; set; }
-        new int xCoordinate = 0;
-        new int yCoordinate = 2;
+        new int xCoordinate  { get; set; }
+        new int yCoordinate { get; set; }
 
         public override string getRoomSound()
         {
