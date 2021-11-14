@@ -16,9 +16,31 @@ namespace FountainOfObjects.PlayerControl
 
         }
 
-        public void moveToNewRoom(string playerDirectionChoice)
+        public void moveToNewRoom(string playerDirectionChoice, List<Room> rooms)
         {
-
+            Room newCurrentRoom;
+            switch (playerDirectionChoice)
+            {
+                case "north":
+                    newCurrentRoom = rooms.Find(r => r.yCoordinate == currentRoom.yCoordinate + 1 && r.xCoordinate == currentRoom.xCoordinate);
+                    currentRoom = newCurrentRoom;
+                    break;
+                case "south":
+                    newCurrentRoom = rooms.Find(r => r.yCoordinate == currentRoom.yCoordinate - 1 && r.xCoordinate == currentRoom.xCoordinate);
+                    currentRoom = newCurrentRoom;
+                    break;
+                case "east":
+                    newCurrentRoom = rooms.Find(r => r.xCoordinate == currentRoom.xCoordinate + 1 && r.yCoordinate == currentRoom.yCoordinate);
+                    currentRoom = newCurrentRoom;
+                    break;
+                case "west":
+                    newCurrentRoom = rooms.Find(r => r.xCoordinate == currentRoom.xCoordinate - 1 && r.yCoordinate == currentRoom.yCoordinate);
+                    break;
+                default:
+                    Console.WriteLine("Undefined direction given");
+                    break;
+                    
+            }
         }
     }
 }
