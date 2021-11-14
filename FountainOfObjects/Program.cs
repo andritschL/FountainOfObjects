@@ -11,16 +11,10 @@ namespace FountainOfObjects
     {
         static void Main(string[] args)
         {
-            GameGrid grid = new GameGrid();
-            // populate rooms list with Rooms.  Rooms are populated with coordinates and all aspects of room type
-            List<Room> rooms = grid.createGameSpaces();
-            Player player = new Player();
-            GamePlay gamePlay = new GamePlay();
-            player.currentRoom = rooms[0];
-            Room currentRoom = player.currentRoom;
-            grid.displayGameGrid(rooms, currentRoom);
-            List<Room> adRooms = gamePlay.getAdjacentRooms(rooms, currentRoom);
-            gamePlay.displayAdjacentRooms(adRooms, currentRoom);
+            RunGame runGame = new RunGame();
+            runGame.startGame();
+            /*
+            */
         }
 
         public class Player

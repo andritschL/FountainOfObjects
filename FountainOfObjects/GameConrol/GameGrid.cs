@@ -44,6 +44,7 @@ namespace FountainOfObjects.GameConrol
         // Finish after gameplay is developed.  Can I dynamically add a spot to display where the player is?
         public void displayGameGrid(List<Room> rooms, Room playerLocation)
         {
+            rooms.Reverse();
             string gameSpot = "[```]";
             string playerSpot = "[ X ]";
             int counter = 1;
