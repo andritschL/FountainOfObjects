@@ -32,5 +32,11 @@ namespace FountainOfObjects.Rooms
             return sight;
         }
 
+        public virtual string getRoomOptions()
+        {
+            string options = "This room is empty. No player actions available.";
+            return options;
+        }
+
     }
 }

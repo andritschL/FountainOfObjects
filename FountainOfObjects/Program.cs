@@ -19,7 +19,6 @@ namespace FountainOfObjects
 
         public class Player
         {
-            public Room currentRoom { get; set; }
 
         }
 

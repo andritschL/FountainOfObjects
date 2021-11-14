@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static FountainOfObjects.Program;
+using FountainOfObjects.PlayerControl;
 
 
 namespace FountainOfObjects.GameConrol
@@ -43,7 +44,7 @@ namespace FountainOfObjects.GameConrol
                 GamePlay gamePlay = new GamePlay();
                 // populate rooms list with Rooms.  Rooms are populated with coordinates and all aspects of room type
                 List<Room> rooms = grid.createGameSpaces();
-                Player player = new Player();
+                PlayerControl.Player player = new PlayerControl.Player();
                 player.currentRoom = rooms[0];
                 Room currentRoom = player.currentRoom;
                 grid.displayGameGrid(rooms, currentRoom);
@@ -51,6 +52,8 @@ namespace FountainOfObjects.GameConrol
                 gamePlay.displayAdjacentRooms(adRooms, currentRoom);
                 Console.WriteLine("Which direction would you like to move?");
                 string playerDirectionChoice = Console.ReadLine();
+
+                player.moveToNewRoom(playerDirectionChoice);
             }
 
         }

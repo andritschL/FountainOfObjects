@@ -35,5 +35,15 @@ namespace FountainOfObjects
             return roomSmell;
         }
 
+        public override string getRoomOptions()
+        {
+            string options = "";
+            if (!isActivated)
+            {
+                options = "Activate Fountain";
+            }
+            return options;
+        }
+
     }
 }

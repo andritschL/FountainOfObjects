@@ -29,5 +29,11 @@ namespace FountainOfObjects
             string sight = "There is light!";
             return sight;
         }
+
+        public override string getRoomOptions()
+        {
+            string options = "Entrance Cavern. No player actions available.";
+            return options;
+        }
     }
 }
