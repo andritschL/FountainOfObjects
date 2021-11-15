@@ -18,6 +18,7 @@ namespace FountainOfObjects.PlayerControl
 
         public void moveToNewRoom(string playerDirectionChoice, List<Room> rooms)
         {
+            Room backupCurrentRoom = currentRoom;
             Room newCurrentRoom = null;
             switch (playerDirectionChoice)
             {
@@ -41,6 +42,16 @@ namespace FountainOfObjects.PlayerControl
                     Console.WriteLine("Undefined direction given");
                     break;
                     
+            }
+
+            if (newCurrentRoom == null)
+            {
+                newCurrentRoom = currentRoom;
+                Console.WriteLine("You cannot go in that direction.  Did you mean to go a different direction?");
+                Console.WriteLine("Which direction would you like to go?");
+                string newPlayerDirection = Console.ReadLine();
+                moveToNewRoom(newPlayerDirection, rooms);
+
             }
         }
     }
