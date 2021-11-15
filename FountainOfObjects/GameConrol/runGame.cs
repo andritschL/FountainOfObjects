@@ -38,14 +38,15 @@ namespace FountainOfObjects.GameConrol
 
         public void executeGame()
         {
-            while(gameOver == false)
+            GameGrid grid = new GameGrid();
+            GamePlay gamePlay = new GamePlay();
+            // populate rooms list with Rooms.  Rooms are populated with coordinates and all aspects of room type
+            List<Room> rooms = grid.createGameSpaces();
+            PlayerControl.Player player = new PlayerControl.Player();
+            player.currentRoom = rooms[0];
+
+            while (gameOver == false)
             {
-                GameGrid grid = new GameGrid();
-                GamePlay gamePlay = new GamePlay();
-                // populate rooms list with Rooms.  Rooms are populated with coordinates and all aspects of room type
-                List<Room> rooms = grid.createGameSpaces();
-                PlayerControl.Player player = new PlayerControl.Player();
-                player.currentRoom = rooms[0];
                 Room currentRoom = player.currentRoom;
                 grid.displayGameGrid(rooms, currentRoom);
                 List<Room> adRooms = gamePlay.getAdjacentRooms(rooms, currentRoom);
@@ -53,7 +54,8 @@ namespace FountainOfObjects.GameConrol
                 Console.WriteLine("Which direction would you like to move?");
                 string playerDirectionChoice = Console.ReadLine();
 
-                player.moveToNewRoom(playerDirectionChoice);
+                player.moveToNewRoom(playerDirectionChoice, rooms);
+                //Console.WriteLine(player.currentRoom);
             }
 
         }

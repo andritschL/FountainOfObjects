@@ -44,27 +44,48 @@ namespace FountainOfObjects.GameConrol
         // Finish after gameplay is developed.  Can I dynamically add a spot to display where the player is?
         public void displayGameGrid(List<Room> rooms, Room playerLocation)
         {
-            rooms.Reverse();
-            string gameSpot = "[```]";
-            string playerSpot = "[ X ]";
-            int counter = 1;
+            List<Room> y0 = new List<Room>();
+            List<Room> y1 = new List<Room>();
+            List<Room> y2 = new List<Room>();
+            List<Room> y3 = new List<Room>();
+            // Split Array and group by Y
             foreach (Room room in rooms)
             {
-                if(room.xCoordinate == playerLocation.xCoordinate && room.yCoordinate == playerLocation.yCoordinate && counter % 4 == 0)
+                if (room.yCoordinate == 0)
                 {
-                    Console.WriteLine(playerSpot);
-                } else if (room.xCoordinate == playerLocation.xCoordinate && room.yCoordinate == playerLocation.yCoordinate)
+                    y0.Add(room);
+                } else if (room.yCoordinate == 1)
                 {
-                    Console.Write(playerSpot);
-                } else if (counter % 4 == 0)
+                    y1.Add(room);
+                } else if (room.yCoordinate == 2)
                 {
-                    Console.WriteLine(gameSpot);
-                } else
+                    y2.Add(room);
+                } else if (room.yCoordinate == 3)
                 {
-                    Console.Write(gameSpot);
+                    y3.Add(room);
                 }
-                counter++;
-            } 
+            }
+            getDisplay(y3, playerLocation);
+            getDisplay(y2, playerLocation);
+            getDisplay(y1, playerLocation);
+            getDisplay(y0, playerLocation);
+        }
+
+        public void getDisplay(List<Room> roomsByYCoordinate, Room playerLocation)
+        {
+            string row = null;
+            string gameSpot = "[```]";
+            string playerSpot = "[ X ]";
+            foreach (Room room in roomsByYCoordinate)
+            {
+                if (room.xCoordinate == playerLocation.xCoordinate && room.yCoordinate == playerLocation.yCoordinate)
+                {
+                    row += playerSpot;
+                } else {
+                    row += gameSpot;
+                }
+            }
+            Console.WriteLine(row);
         }
 
     }
