@@ -42,7 +42,7 @@ namespace FountainOfObjects.GameConrol
             GamePlay gamePlay = new GamePlay();
             // populate rooms list with Rooms.  Rooms are populated with coordinates and all aspects of room type
             List<Room> rooms = grid.createGameSpaces();
-            PlayerControl.Player player = new PlayerControl.Player();
+            Player player = new Player();
             player.currentRoom = rooms[0];
 
             while (gameOver == false)
@@ -51,11 +51,12 @@ namespace FountainOfObjects.GameConrol
                 grid.displayGameGrid(rooms, currentRoom);
                 List<Room> adRooms = gamePlay.getAdjacentRooms(rooms, currentRoom);
                 gamePlay.displayAdjacentRooms(adRooms, currentRoom);
+                Console.WriteLine();
                 Console.WriteLine("Which direction would you like to move?");
+                Console.WriteLine();
+                // Add error handling to protect agains exceptions when players move off of the board
                 string playerDirectionChoice = Console.ReadLine();
-
                 player.moveToNewRoom(playerDirectionChoice, rooms);
-                //Console.WriteLine(player.currentRoom);
             }
 
         }

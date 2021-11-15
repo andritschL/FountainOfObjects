@@ -13,14 +13,6 @@ namespace FountainOfObjects
         {
             RunGame runGame = new RunGame();
             runGame.startGame();
-            /*
-            */
         }
-
-        public class Player
-        {
-
-        }
-
     }
 }

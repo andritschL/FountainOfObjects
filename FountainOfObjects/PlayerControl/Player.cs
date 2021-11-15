@@ -18,7 +18,7 @@ namespace FountainOfObjects.PlayerControl
 
         public void moveToNewRoom(string playerDirectionChoice, List<Room> rooms)
         {
-            Room newCurrentRoom;
+            Room newCurrentRoom = null;
             switch (playerDirectionChoice)
             {
                 case "north":
@@ -35,6 +35,7 @@ namespace FountainOfObjects.PlayerControl
                     break;
                 case "west":
                     newCurrentRoom = rooms.Find(r => r.xCoordinate == currentRoom.xCoordinate - 1 && r.yCoordinate == currentRoom.yCoordinate);
+                    currentRoom = newCurrentRoom;
                     break;
                 default:
                     Console.WriteLine("Undefined direction given");

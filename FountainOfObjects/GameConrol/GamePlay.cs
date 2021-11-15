@@ -17,22 +17,18 @@ namespace FountainOfObjects.GameConrol
                 if (room.xCoordinate == playerRoom.xCoordinate + 1 && room.yCoordinate == playerRoom.yCoordinate)
                 {
                     adjacentRooms.Add(room);
-                    Console.WriteLine("x = " + room.xCoordinate + "y = " + room.yCoordinate);
                 }
                 else if (room.xCoordinate == playerRoom.xCoordinate - 1 && room.yCoordinate == playerRoom.yCoordinate)
                 {
                     adjacentRooms.Add(room);
-                    Console.WriteLine("x = " + room.xCoordinate + "y = " + room.yCoordinate);
                 }
                 else if (room.yCoordinate == playerRoom.yCoordinate + 1 && room.xCoordinate == playerRoom.xCoordinate)
                 {
                     adjacentRooms.Add(room);
-                    Console.WriteLine("x = " + room.xCoordinate + "y = " + room.yCoordinate);
                 }
                 else if (room.yCoordinate == playerRoom.yCoordinate - 1 && room.xCoordinate == playerRoom.xCoordinate)
                 {
                     adjacentRooms.Add(room);
-                    Console.WriteLine("x = " + room.xCoordinate + "y = " + room.yCoordinate);
                 }
             }
             return adjacentRooms;

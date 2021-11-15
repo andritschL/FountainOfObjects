@@ -69,6 +69,7 @@ namespace FountainOfObjects.GameConrol
             getDisplay(y2, playerLocation);
             getDisplay(y1, playerLocation);
             getDisplay(y0, playerLocation);
+            Console.WriteLine();
         }
 
         public void getDisplay(List<Room> roomsByYCoordinate, Room playerLocation)
