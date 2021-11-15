@@ -30,15 +30,14 @@ namespace FountainOfObjects
             return sight;
         }
 
-        public override string getRoomOptions()
-        {
-            string options = "Entrance Cavern. No player actions available.";
-            return options;
-        }
-
         public override string getRoomType()
         {
             return "Cavern";
+        }
+
+        public override string displayActions()
+        {
+            return "None";
         }
     }
 }

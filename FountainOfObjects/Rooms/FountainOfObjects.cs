@@ -35,20 +35,29 @@ namespace FountainOfObjects
             return roomSmell;
         }
 
-        public override string getRoomOptions()
-        {
-            string options = "";
-            if (!isActivated)
-            {
-                options = "Activate Fountain";
-            }
-            return options;
-        }
-
         public override string getRoomType()
         {
             return "FountainOfObjects";
         }
+
+        public override string displayActions()
+        {
+            if (isActivated)
+            {
+                return "Turn off the fountain?";
+            } else
+            {
+                return "Activate Fountain of Objects";
+            }
+        }
+
+        public override void action()
+        {
+            isActivated = true;
+            Console.WriteLine("The fountain has been activiated.  Return to the cavern entrance safely!");
+        }
+
+
 
     }
 }

@@ -11,28 +11,42 @@ namespace FountainOfObjects.PlayerControl
     {
         public Room currentRoom { get; set; }
 
-        public void playRoomActions(string instructions)
+        public void playTurn(List<Room> rooms)
         {
-            string roomType = currentRoom.getRoomType();
-            if (roomType == "FountainOfObjects")
+            string roomAction = currentRoom.displayActions();
+            if (roomAction != "None")
             {
-                Console.WriteLine("You have found the Fountain of Objects! Would you like to activate it? (Yes = Activate. NO = I am a butt sandwich");
-                string playerDecision = Console.ReadLine();
-                if (playerDecision == "Yes")
+                Console.WriteLine("Would you like to move to a new room or " + roomAction + "?");
+                Console.WriteLine("Type 'Move' or 'Action'");
+                string playerChoice = Console.ReadLine();
+                if (playerChoice == "Move")
                 {
-                    // I think this created a new instance of the class which will not show in the room list?
-                    FountainOfObjects fountain = new FountainOfObjects();
-                    fountain.isActivated = true;
+                    Console.WriteLine();
+                    Console.WriteLine("Which direction would you like to move?");
+                    Console.WriteLine();
+                    string playerDirectionChoice = Console.ReadLine();
+                    moveToNewRoom(playerDirectionChoice, rooms);
+
+                } else if (playerChoice == "Action")
+                {
+                    currentRoom.action();
                 }
-            } else if (roomType == "Cavern")
+            } else
             {
-
-            } else if (roomType == "Empty Room")
-            {
-
+                Console.WriteLine();
+                Console.WriteLine("Which direction would you like to move?");
+                Console.WriteLine();
+                string playerDirectionChoice = Console.ReadLine();
+                moveToNewRoom(playerDirectionChoice, rooms);
             }
 
         }
+
+        public void playRoomAction()
+        {
+
+        }
+
 
         public void moveToNewRoom(string playerDirectionChoice, List<Room> rooms)
         {

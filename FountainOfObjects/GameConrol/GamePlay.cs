@@ -53,7 +53,7 @@ namespace FountainOfObjects.GameConrol
                 {
                     direction = "north";
                 }
-                else if (room.yCoordinate == currentRoom.xCoordinate - 1)
+                else if (room.yCoordinate == currentRoom.yCoordinate - 1)
                 {
                     direction = "south";
                 }
@@ -61,6 +61,5 @@ namespace FountainOfObjects.GameConrol
                 Console.WriteLine("Room to the " + direction + ": " + sound + " :: " + smell);
             }
         }
-
     }
 }

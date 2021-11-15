@@ -52,11 +52,8 @@ namespace FountainOfObjects.GameConrol
                 List<Room> adRooms = gamePlay.getAdjacentRooms(rooms, currentRoom);
                 gamePlay.displayAdjacentRooms(adRooms, currentRoom);
                 Console.WriteLine();
-                Console.WriteLine("Which direction would you like to move?");
                 Console.WriteLine();
-                // Add error handling to protect agains exceptions when players move off of the board
-                string playerDirectionChoice = Console.ReadLine();
-                player.moveToNewRoom(playerDirectionChoice, rooms);
+                player.playTurn(rooms);
             }
 
         }
