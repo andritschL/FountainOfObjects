@@ -38,5 +38,10 @@ namespace FountainOfObjects.Rooms
             return options;
         }
 
+        public virtual string getRoomType()
+        {
+            return "empty room";
+        }
+
     }
 }

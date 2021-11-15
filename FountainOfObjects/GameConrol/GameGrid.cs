@@ -26,6 +26,7 @@ namespace FountainOfObjects.GameConrol
                     else if (xspot == 0 && ySPot == 2)
                     {
                         FountainOfObjects fountainOfObjects = new FountainOfObjects();
+                        fountainOfObjects.isActivated = false;
                         fountainOfObjects.xCoordinate = 0;
                         fountainOfObjects.yCoordinate = 2;
                         gridSpots.Add(fountainOfObjects);

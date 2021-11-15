@@ -45,5 +45,10 @@ namespace FountainOfObjects
             return options;
         }
 
+        public override string getRoomType()
+        {
+            return "FountainOfObjects";
+        }
+
     }
 }

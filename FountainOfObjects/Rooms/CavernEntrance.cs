@@ -35,5 +35,10 @@ namespace FountainOfObjects
             string options = "Entrance Cavern. No player actions available.";
             return options;
         }
+
+        public override string getRoomType()
+        {
+            return "Cavern";
+        }
     }
 }

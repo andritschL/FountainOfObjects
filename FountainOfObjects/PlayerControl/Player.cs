@@ -11,8 +11,26 @@ namespace FountainOfObjects.PlayerControl
     {
         public Room currentRoom { get; set; }
 
-        public void playRoom(string instructions)
+        public void playRoomActions(string instructions)
         {
+            string roomType = currentRoom.getRoomType();
+            if (roomType == "FountainOfObjects")
+            {
+                Console.WriteLine("You have found the Fountain of Objects! Would you like to activate it? (Yes = Activate. NO = I am a butt sandwich");
+                string playerDecision = Console.ReadLine();
+                if (playerDecision == "Yes")
+                {
+                    // I think this created a new instance of the class which will not show in the room list?
+                    FountainOfObjects fountain = new FountainOfObjects();
+                    fountain.isActivated = true;
+                }
+            } else if (roomType == "Cavern")
+            {
+
+            } else if (roomType == "Empty Room")
+            {
+
+            }
 
         }
 
