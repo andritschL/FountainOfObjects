@@ -39,7 +39,7 @@ namespace FountainOfObjects.GameConrol
         public void executeGame()
         {
             GameGrid grid = new GameGrid();
-            GamePlay gamePlay = new GamePlay();
+            GamePlay gamePlay = new ();
             // populate rooms list with Rooms.  Rooms are populated with coordinates and all aspects of room type
             List<Room> rooms = grid.createGameSpaces();
             Player player = new Player();
@@ -54,6 +54,10 @@ namespace FountainOfObjects.GameConrol
                 Console.WriteLine();
                 Console.WriteLine();
                 player.playTurn(rooms);
+                if (currentRoom.xCoordinate == 0 && currentRoom.yCoordinate == 0)
+                {
+                    
+                }
             }
 
         }

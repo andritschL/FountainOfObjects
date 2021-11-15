@@ -35,9 +35,5 @@ namespace FountainOfObjects
             return "Cavern";
         }
 
-        public override string displayActions()
-        {
-            return "None";
-        }
     }
 }
