@@ -13,6 +13,7 @@ namespace FountainOfObjects.Rooms
         public int xCoordinate { get; set; }
         public int yCoordinate { get; set; }
         bool playerInRoom { get; set; }
+        string roomType = "empty room";
 
         public virtual string getRoomSound()
         {
@@ -37,12 +38,12 @@ namespace FountainOfObjects.Rooms
             return "empty room";
         }
 
-        public virtual string displayActions()
+        public virtual string displayActions(FountainOfObjects fountain)
         {
             return "None";
         }
 
-        public virtual void action()
+        public virtual void action(FountainOfObjects fountain)
         {
 
         }

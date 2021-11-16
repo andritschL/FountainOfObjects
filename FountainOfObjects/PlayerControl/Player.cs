@@ -1,4 +1,5 @@
-﻿using FountainOfObjects.Rooms;
+﻿using FountainOfObjects.GameConrol;
+using FountainOfObjects.Rooms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,13 @@ namespace FountainOfObjects.PlayerControl
 {
     internal class Player
     {
+        private object runGame;
+
         public Room currentRoom { get; set; }
 
-        public void playTurn(List<Room> rooms)
+        public void playTurn(List<Room> rooms, FountainOfObjects fountain)
         {
-            string roomAction = currentRoom.displayActions();
+            string roomAction = currentRoom.displayActions(fountain);
             if (roomAction != "None")
             {
                 Console.WriteLine("Would you like to move to a new room or " + roomAction + "?");
@@ -29,7 +32,7 @@ namespace FountainOfObjects.PlayerControl
 
                 } else if (playerChoice == "Action")
                 {
-                    currentRoom.action();
+                    currentRoom.action(fountain);
                 }
             } else
             {
@@ -39,7 +42,6 @@ namespace FountainOfObjects.PlayerControl
                 string playerDirectionChoice = Console.ReadLine();
                 moveToNewRoom(playerDirectionChoice, rooms);
             }
-
         }
 
         public void playRoomAction()

@@ -14,6 +14,10 @@ namespace FountainOfObjects.GameConrol
     {
         public string gameDifficulty = "easy";
         public bool gameOver = false;
+        Player player = new Player();
+        FountainOfObjects fountainOfObjects = new FountainOfObjects();
+        CavernEntrance cavernEntrance = new CavernEntrance();
+
         public void startGame()
         {
             Console.WriteLine("Welcome to the Fountain of Objects!");
@@ -41,8 +45,7 @@ namespace FountainOfObjects.GameConrol
             GameGrid grid = new GameGrid();
             GamePlay gamePlay = new ();
             // populate rooms list with Rooms.  Rooms are populated with coordinates and all aspects of room type
-            List<Room> rooms = grid.createGameSpaces();
-            Player player = new Player();
+            List<Room> rooms = grid.createGameSpaces(fountainOfObjects, cavernEntrance);
             player.currentRoom = rooms[0];
 
             while (gameOver == false)
@@ -53,13 +56,8 @@ namespace FountainOfObjects.GameConrol
                 gamePlay.displayAdjacentRooms(adRooms, currentRoom);
                 Console.WriteLine();
                 Console.WriteLine();
-                player.playTurn(rooms);
-                if (currentRoom.xCoordinate == 0 && currentRoom.yCoordinate == 0)
-                {
-                    
-                }
+                player.playTurn(rooms, fountainOfObjects);
             }
-
         }
     }
 }

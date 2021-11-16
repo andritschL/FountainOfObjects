@@ -9,7 +9,7 @@ namespace FountainOfObjects.GameConrol
 {
     internal class GameGrid
     {
-        public List<Room> createGameSpaces()
+        public List<Room> createGameSpaces(FountainOfObjects fountainRoom, CavernEntrance cavern)
         {
             List<Room> gridSpots = new List<Room>();
             int[] x = new int[4] { 0, 1, 2, 3 };
@@ -20,16 +20,14 @@ namespace FountainOfObjects.GameConrol
                 {
                     if (xspot == 0 && ySPot == 0)
                     {
-                        CavernEntrance cavernEntrance = new CavernEntrance();
-                        gridSpots.Add(cavernEntrance);
+                        gridSpots.Add(cavern);
                     }
                     else if (xspot == 0 && ySPot == 2)
                     {
-                        FountainOfObjects fountainOfObjects = new FountainOfObjects();
-                        fountainOfObjects.isActivated = false;
-                        fountainOfObjects.xCoordinate = 0;
-                        fountainOfObjects.yCoordinate = 2;
-                        gridSpots.Add(fountainOfObjects);
+                        fountainRoom.isActivated = false;
+                        fountainRoom.xCoordinate = 0;
+                        fountainRoom.yCoordinate = 2;
+                        gridSpots.Add(fountainRoom);
                     } else
                     {
                         Room room = new Room();

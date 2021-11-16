@@ -14,6 +14,7 @@ namespace FountainOfObjects
         public bool isActivated { get; set; }
         new int xCoordinate  { get; set; }
         new int yCoordinate { get; set; }
+        string roomType = "Fountain of Objects";
 
         public override string getRoomSound()
         {
@@ -40,7 +41,7 @@ namespace FountainOfObjects
             return "FountainOfObjects";
         }
 
-        public override string displayActions()
+        public override string displayActions(FountainOfObjects fountain)
         {
             if (isActivated)
             {
@@ -51,7 +52,7 @@ namespace FountainOfObjects
             }
         }
 
-        public override void action()
+        public override void action(FountainOfObjects fountain)
         {
             isActivated = true;
             Console.WriteLine("The fountain has been activiated.  Return to the cavern entrance safely!");
