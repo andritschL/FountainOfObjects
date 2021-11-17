@@ -9,8 +9,8 @@ namespace FountainOfObjects.Rooms
 {
     internal class Pit : Room, ICoordinate
     {
-        public int xCoordinate { get; set; }
-        public int yCoordinate { get; set; }
+        new int xCoordinate { get; set; }
+        new int yCoordinate { get; set; }
 
         public override string getRoomSound()
         {

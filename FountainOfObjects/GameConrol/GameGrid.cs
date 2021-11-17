@@ -16,25 +16,36 @@ namespace FountainOfObjects.GameConrol
             int[] y = new int[4] { 0, 1, 2, 3 };
             foreach (int xspot in x)
             {
-                foreach (int ySPot in y)
+                Random r = new Random();
+                int randomPit = r.Next(0, 4);
+
+                foreach (int yspot in y)
                 {
-                    if (xspot == 0 && ySPot == 0)
+                    if (xspot == 0 && yspot == 0)
                     {
                         gridSpots.Add(cavern);
                     }
-                    else if (xspot == 0 && ySPot == 2)
+                    else if (xspot == 0 && yspot == 2)
                     {
                         fountainRoom.isActivated = false;
                         fountainRoom.xCoordinate = 0;
                         fountainRoom.yCoordinate = 2;
                         gridSpots.Add(fountainRoom);
+                    } else if (yspot == randomPit)
+                    {
+                        Pit pit = new Pit();
+                        pit.xCoordinate = xspot;
+                        pit.yCoordinate = yspot;
+                        gridSpots.Add(pit);
+
                     } else
                     {
                         Room room = new Room();
                         room.xCoordinate = xspot;
-                        room.yCoordinate = ySPot;
+                        room.yCoordinate = yspot;
                         gridSpots.Add(room);
                     }
+
                 }
             }
             return gridSpots;

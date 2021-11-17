@@ -11,7 +11,7 @@ using FountainOfObjects.PlayerControl;
 namespace FountainOfObjects.GameConrol
 {
     internal class RunGame
-    {
+    {   
         public string gameDifficulty = "easy";
         public bool gameOver = false;
         Player player = new Player();
