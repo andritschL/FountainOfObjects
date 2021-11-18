@@ -46,25 +46,20 @@ namespace FountainOfObjects.PlayerControl
 
         public void moveToNewRoom(string playerDirectionChoice, List<Room> rooms)
         {
-            Room previousRoom = currentRoom;
             Room newCurrentRoom = null;
             switch (playerDirectionChoice)
             {
                 case "north":
                     newCurrentRoom = rooms.Find(r => r.yCoordinate == currentRoom.yCoordinate + 1 && r.xCoordinate == currentRoom.xCoordinate);
-                    currentRoom = newCurrentRoom;
                     break;
                 case "south":
                     newCurrentRoom = rooms.Find(r => r.yCoordinate == currentRoom.yCoordinate - 1 && r.xCoordinate == currentRoom.xCoordinate);
-                    currentRoom = newCurrentRoom;
                     break;
                 case "east":
                     newCurrentRoom = rooms.Find(r => r.xCoordinate == currentRoom.xCoordinate + 1 && r.yCoordinate == currentRoom.yCoordinate);
-                    currentRoom = newCurrentRoom;
                     break;
                 case "west":
                     newCurrentRoom = rooms.Find(r => r.xCoordinate == currentRoom.xCoordinate - 1 && r.yCoordinate == currentRoom.yCoordinate);
-                    currentRoom = newCurrentRoom;
                     break;
                 default:
                     Console.WriteLine("Undefined direction given");
@@ -72,11 +67,13 @@ namespace FountainOfObjects.PlayerControl
                     
             }
 
-            if (newCurrentRoom == null)
+            if (newCurrentRoom != null)
             {
-                newCurrentRoom = currentRoom;
-                Console.WriteLine("You cannot go in that direction.  Did you mean to go a different direction?");
-                Console.WriteLine("Which direction would you like to go?");
+                currentRoom = newCurrentRoom;
+            } else
+            {
+                Console.WriteLine("You can't go that way, silly!");
+                Console.WriteLine("Which direction would you like to move?");
                 string newPlayerDirection = Console.ReadLine();
                 moveToNewRoom(newPlayerDirection, rooms);
             }
