@@ -9,15 +9,25 @@ namespace FountainOfObjects.GameConrol
 {
     internal class GameGrid
     {
-        public List<Room> createGameSpaces(FountainOfObjects fountainRoom, CavernEntrance cavern)
+        public List<Room> createGameSpaces(FountainOfObjects fountainRoom, CavernEntrance cavern, string difficulty)
         {
             List<Room> gridSpots = new List<Room>();
-            int[] x = new int[4] { 0, 1, 2, 3 };
-            int[] y = new int[4] { 0, 1, 2, 3 };
+            int[] x = getGameGridArray(difficulty);
+            int[] y = x;
             foreach (int xspot in x)
             {
+                int randomPit;
                 Random r = new Random();
-                int randomPit = r.Next(0, 4);
+                if (difficulty == "hard")
+                {
+                    randomPit = r.Next(0, 12);
+                } else if (difficulty == "intermediate")
+                {
+                    randomPit = r.Next(0, 8);
+                } else
+                {
+                    randomPit = r.Next(0, 4);
+                }
 
                 foreach (int yspot in y)
                 {
@@ -49,6 +59,23 @@ namespace FountainOfObjects.GameConrol
                 }
             }
             return gridSpots;
+        }
+
+        public int[] getGameGridArray(string difficulty)
+        {
+            if (difficulty == "hard")
+            {
+                int[] array = new int[12] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+                return array;
+            } else if (difficulty == "intermediate")
+            {
+                int[] array = new int[8] { 0, 1, 2, 3, 4, 5, 6, 7 };
+                return array;
+            } else
+            {
+                int[] array = new int[4] { 0, 1, 2, 3 };
+                return array;
+            }
         }
 
         // Finish after gameplay is developed.  Can I dynamically add a spot to display where the player is?

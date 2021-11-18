@@ -45,7 +45,7 @@ namespace FountainOfObjects.GameConrol
             GameGrid grid = new GameGrid();
             GamePlay gamePlay = new ();
             // populate rooms list with Rooms.  Rooms are populated with coordinates and all aspects of room type
-            List<Room> rooms = grid.createGameSpaces(fountainOfObjects, cavernEntrance);
+            List<Room> rooms = grid.createGameSpaces(fountainOfObjects, cavernEntrance, gameDifficulty);
             player.currentRoom = rooms[0];
 
             while (gameOver == false)
