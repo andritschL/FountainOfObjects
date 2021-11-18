@@ -44,15 +44,9 @@ namespace FountainOfObjects.PlayerControl
             }
         }
 
-        public void playRoomAction()
-        {
-
-        }
-
-
         public void moveToNewRoom(string playerDirectionChoice, List<Room> rooms)
         {
-            Room backupCurrentRoom = currentRoom;
+            Room previousRoom = currentRoom;
             Room newCurrentRoom = null;
             switch (playerDirectionChoice)
             {
@@ -85,7 +79,17 @@ namespace FountainOfObjects.PlayerControl
                 Console.WriteLine("Which direction would you like to go?");
                 string newPlayerDirection = Console.ReadLine();
                 moveToNewRoom(newPlayerDirection, rooms);
+            }
 
+            checkForTraps(currentRoom);
+        }
+
+        public void checkForTraps(Room currentRoom)
+        {
+            if (currentRoom.getRoomType() == "Pit")
+            {
+                Pit pit = new Pit();
+                pit.deathByPit();
             }
         }
     }
