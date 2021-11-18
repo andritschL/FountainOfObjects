@@ -51,7 +51,7 @@ namespace FountainOfObjects.GameConrol
             while (gameOver == false)
             {
                 Room currentRoom = player.currentRoom;
-                grid.displayGameGrid(rooms, currentRoom);
+                grid.displayGameGrid(rooms, currentRoom, gameDifficulty);
                 List<Room> adRooms = gamePlay.getAdjacentRooms(rooms, currentRoom);
                 gamePlay.displayAdjacentRooms(adRooms, currentRoom);
                 Console.WriteLine();

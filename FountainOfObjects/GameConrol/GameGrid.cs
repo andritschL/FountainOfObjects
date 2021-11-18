@@ -78,34 +78,33 @@ namespace FountainOfObjects.GameConrol
             }
         }
 
-        // Finish after gameplay is developed.  Can I dynamically add a spot to display where the player is?
-        public void displayGameGrid(List<Room> rooms, Room playerLocation)
+        public void displayGameGrid(List<Room> rooms, Room playerLocation, string difficulty)
         {
-            List<Room> y0 = new List<Room>();
-            List<Room> y1 = new List<Room>();
-            List<Room> y2 = new List<Room>();
-            List<Room> y3 = new List<Room>();
-            // Split Array and group by Y
-            foreach (Room room in rooms)
+            List<List<Room>> rows = new();
+            int rowMaxValue = 4;
+            if (difficulty == "hard")
             {
-                if (room.yCoordinate == 0)
-                {
-                    y0.Add(room);
-                } else if (room.yCoordinate == 1)
-                {
-                    y1.Add(room);
-                } else if (room.yCoordinate == 2)
-                {
-                    y2.Add(room);
-                } else if (room.yCoordinate == 3)
-                {
-                    y3.Add(room);
-                }
+                rowMaxValue = 12;
             }
-            getDisplay(y3, playerLocation);
-            getDisplay(y2, playerLocation);
-            getDisplay(y1, playerLocation);
-            getDisplay(y0, playerLocation);
+            
+            if (difficulty == "intermediate")
+            {
+                rowMaxValue = 8;
+            }
+
+            int rowCounter = 0;
+            while (rowCounter < rowMaxValue)
+            {
+                List<Room> rowRooms = rooms.FindAll(r => r.yCoordinate.Equals(rowCounter));
+                rows.Add(rowRooms);
+                rowCounter++;
+            }
+            rows.Reverse();
+            foreach (List<Room> gridRow in rows)
+            {
+                getDisplay(gridRow, playerLocation);
+            }
+
             Console.WriteLine();
         }
 
