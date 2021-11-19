@@ -78,15 +78,20 @@ namespace FountainOfObjects.PlayerControl
                 moveToNewRoom(newPlayerDirection, rooms);
             }
 
-            checkForTraps(currentRoom);
+            checkForTraps(currentRoom, rooms);
         }
 
-        public void checkForTraps(Room currentRoom)
+        public void checkForTraps(Room playerRoom, List<Room> rooms)
         {
             if (currentRoom.getRoomType() == "Pit")
             {
                 Pit pit = new Pit();
                 pit.deathByPit();
+            } else if(playerRoom.getRoomType() == "Maelstrom")
+            {
+                Random r = new Random();
+                int newRoomIndex = r.Next(0, rooms.Count);
+                currentRoom = rooms[newRoomIndex];
             }
         }
     }

@@ -16,16 +16,21 @@ namespace FountainOfObjects.GameConrol
             int[] y = x;
             foreach (int xspot in x)
             {
+                int randomMaelstrom;
+                Random m = new Random();
                 int randomPit;
                 Random r = new Random();
                 if (difficulty == "hard")
                 {
+                    randomMaelstrom = m.Next(0, 12);
                     randomPit = r.Next(0, 12);
                 } else if (difficulty == "intermediate")
                 {
+                    randomMaelstrom = m.Next(0, 8);
                     randomPit = r.Next(0, 8);
                 } else
                 {
+                    randomMaelstrom = m.Next(0, 4);
                     randomPit = r.Next(0, 4);
                 }
 
@@ -48,6 +53,12 @@ namespace FountainOfObjects.GameConrol
                         pit.yCoordinate = yspot;
                         gridSpots.Add(pit);
 
+                    } else if (yspot == randomMaelstrom)
+                    {
+                        Maelstrom maelstrom = new();
+                        maelstrom.xCoordinate = xspot;
+                        maelstrom.yCoordinate = yspot;
+                        gridSpots.Add(maelstrom);
                     } else
                     {
                         Room room = new Room();
