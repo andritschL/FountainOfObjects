@@ -92,6 +92,11 @@ namespace FountainOfObjects.PlayerControl
                 Random r = new Random();
                 int newRoomIndex = r.Next(0, rooms.Count);
                 currentRoom = rooms[newRoomIndex];
+                if (currentRoom.getRoomType() == "Pit")
+                {
+                    Pit pit = new Pit();
+                    pit.deathByPit();
+                }
             }
         }
     }
