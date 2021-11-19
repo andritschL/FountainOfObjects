@@ -97,6 +97,10 @@ namespace FountainOfObjects.PlayerControl
                     Pit pit = new Pit();
                     pit.deathByPit();
                 }
+            } else if (playerRoom.getRoomType() == "Amarok")
+            {
+                Amarok amarok = new();
+                amarok.deathByAmarok();
             }
         }
     }

@@ -9,6 +9,7 @@ namespace FountainOfObjects.GameConrol
 {
     internal class GameGrid
     {
+        /*
         public List<Room> createGameSpaces(FountainOfObjects fountainRoom, CavernEntrance cavern, string difficulty)
         {
             List<Room> gridSpots = new List<Room>();
@@ -71,6 +72,122 @@ namespace FountainOfObjects.GameConrol
             }
             return gridSpots;
         }
+        */
+        public List<Room> createGameSpaces(FountainOfObjects fountainRoom, CavernEntrance cavernRoom, string difficulty)
+        {
+
+
+            List<Room> gridSpots = new List<Room>();
+            int[] x = getGameGridArray(difficulty);
+            int[] y = x;
+            int[] fooRoomCoordinate = getFountainIndex(difficulty);
+            //gridSpots[fooRoomIndex] = fountainRoom;
+            List<int[]> pits = new();
+            pits = getPitIndexes(difficulty);
+            
+            foreach (int xspot in x)
+            {
+                foreach (int yspot in y)
+                {
+                    int[] searchForPits = pits.Find(r => r[0] == xspot && r[1] == yspot);
+                    if (xspot == 0 && yspot == 0)
+                    {
+                        gridSpots.Add(cavernRoom);
+                    }
+                    else if (xspot == fooRoomCoordinate[0] && yspot == fooRoomCoordinate[1])
+                    {
+                        fountainRoom.isActivated = false;
+                        fountainRoom.xCoordinate = fooRoomCoordinate[0];
+                        fountainRoom.yCoordinate = fooRoomCoordinate[1];
+                        gridSpots.Add(fountainRoom);
+                    } else if (searchForPits != null)
+                    {
+                        Pit pit = new Pit();
+                        pit.xCoordinate = xspot;
+                        pit.yCoordinate = yspot;
+                        gridSpots.Add(pit);
+                    } else 
+                    {
+                        Room room = new();
+                        room.xCoordinate = xspot;
+                        room.yCoordinate = yspot;
+                        gridSpots.Add(room);
+                    }
+                }
+            }
+
+            // Add pits 
+            // Add maelstroms
+            // Add amaroks
+            // Fill in empty Rooms
+
+            return gridSpots;
+        }
+
+        public int[] getFountainIndex(string difficulty)
+        {
+            Random spot = new();
+            int[] coordinate = new int[2];
+            if (difficulty == "difficult")
+            {
+                coordinate[0] = spot.Next(1, 11);
+                coordinate[1] = spot.Next(1, 11);
+                return coordinate;
+            }
+            else if (difficulty == "intermediate")
+            {
+                coordinate[0] = spot.Next(1, 7);
+                coordinate[1] = spot.Next(1, 7);
+                return coordinate;
+            }
+            else
+            {
+                coordinate[0] = spot.Next(1, 3);
+                coordinate[1] = spot.Next(1, 3);
+                return coordinate;
+            }
+        }
+
+        public List<int[]> getPitIndexes(string difficulty)
+        {
+            List<int[]> pitpoints = new();
+            int[] coordinate = new int[2];
+            Random spot = new();
+
+            int counter = 0;
+            if (difficulty == "hard")
+            {
+                counter = 9;
+                for (int i = 0; i < counter; i++)
+                {
+                    coordinate[0] = spot.Next(1, 11);
+                    coordinate[1] = spot.Next(1, 11);
+                    pitpoints.Add(coordinate);
+                }
+            }
+            else if (difficulty == "intermediate")
+            {
+                counter = 5;
+                for (int i = 0; i < counter; i++)
+                {
+                    coordinate[0] = spot.Next(1, 7);
+                    coordinate[1] = spot.Next(1, 7);
+                    pitpoints.Add(coordinate);
+                }
+            }
+            else
+            {
+                counter = 2;
+                for (int i = 0; i < counter; i++)
+                {
+                    coordinate[0] = spot.Next(1, 3);
+                    coordinate[1] = spot.Next(1, 3);
+                    pitpoints.Add(coordinate);
+                }
+            }
+            return pitpoints;
+        }
+
 
         public int[] getGameGridArray(string difficulty)
         {
