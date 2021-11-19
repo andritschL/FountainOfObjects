@@ -25,7 +25,7 @@ namespace FountainOfObjects.GameConrol
             Console.WriteLine("The Oject of this game is to navigate your player to the fountain of objects room, activate the fountain, then navigate back to the cavern entrance");
             Console.WriteLine();
             Console.WriteLine("Choose a game difficulty to start. Hard, Intermediate, or Easy");
-            gameDifficulty = Console.ReadLine();
+            gameDifficulty = Console.ReadLine().ToLower();
             Console.WriteLine("Your player is the 'X'. Each turn, the sound, smell, and visuals of the next room will be displayed to you so you know if a room is safe to enter or so you can hear the fountain.");
             Console.WriteLine("You will have the option to move in these directions: North, South, East, West.");
             Console.WriteLine("Some rooms will have other options that will be displayed to you as you're in the room.");
