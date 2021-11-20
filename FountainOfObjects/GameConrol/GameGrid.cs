@@ -83,13 +83,19 @@ namespace FountainOfObjects.GameConrol
             int[] fooRoomCoordinate = getFountainIndex(difficulty);
             //gridSpots[fooRoomIndex] = fountainRoom;
             List<int[]> pits = new();
-            pits = getPitIndexes(difficulty);
+            pits = getIndexes(difficulty, "pit");
+            List<int[]> maelstroms = new();
+            maelstroms = getIndexes(difficulty, "maelstrom");
+            List<int[]> amaroks = new();
+            amaroks = getIndexes(difficulty, "amarok");
             
             foreach (int xspot in x)
             {
                 foreach (int yspot in y)
                 {
                     int[] searchForPits = pits.Find(r => r[0] == xspot && r[1] == yspot);
+                    int[] searchForMaelstroms = maelstroms.Find(r => r[0] == xspot && r[1] == yspot);
+                    int[] searchForAmaroks = amaroks.Find(r => r[0] == xspot && r[1] == yspot);
                     if (xspot == 0 && yspot == 0)
                     {
                         gridSpots.Add(cavernRoom);
@@ -106,6 +112,18 @@ namespace FountainOfObjects.GameConrol
                         pit.xCoordinate = xspot;
                         pit.yCoordinate = yspot;
                         gridSpots.Add(pit);
+                    } else if (searchForMaelstroms != null)
+                    {
+                        Maelstrom maelstrom = new Maelstrom();
+                        maelstrom.xCoordinate = xspot;
+                        maelstrom.yCoordinate = yspot;
+                        gridSpots.Add(maelstrom);
+                    } else if (searchForAmaroks != null)
+                    {
+                        Amarok amarok = new Amarok();
+                        amarok.xCoordinate = xspot;
+                        amarok.yCoordinate = yspot;
+                        gridSpots.Add(amarok);
                     } else 
                     {
                         Room room = new();
@@ -116,10 +134,7 @@ namespace FountainOfObjects.GameConrol
                 }
             }
 
-            // Add pits 
-            // Add maelstroms
             // Add amaroks
-            // Fill in empty Rooms
 
             return gridSpots;
         }
@@ -148,30 +163,47 @@ namespace FountainOfObjects.GameConrol
             }
         }
 
-        public List<int[]> getPitIndexes(string difficulty)
+        public List<int[]> getIndexes(string difficulty, string type)
         {
             List<int[]> pitpoints = new();
-            int[] coordinate = new int[2];
-            Random spot = new();
-
             int counter = 0;
             if (difficulty == "hard")
-            {
-                counter = 9;
+            {   
+                if (type == "pit")
+                {
+                    counter = 9;
+                } else if (type == "maelstrom")
+                {
+                    counter = 11;
+                } else if (type == "amarok")
+                {
+                    counter = 6;
+                }
                 for (int i = 0; i < counter; i++)
                 {
-                    coordinate[0] = spot.Next(1, 11);
-                    coordinate[1] = spot.Next(1, 11);
+                    int[] coordinate = new int[2];
+                    coordinate[0] = generateRandomNumber(1, 11);
+                    coordinate[1] = generateRandomNumber(1, 11);
                     pitpoints.Add(coordinate);
                 }
             }
             else if (difficulty == "intermediate")
             {
-                counter = 5;
+                if (type == "pit")
+                {
+                    counter = 5;
+                } else if (type == "maelstrom")
+                {
+                    counter = 6;
+                } else if (type == "amarok")
+                {
+                    counter = 3;
+                }
                 for (int i = 0; i < counter; i++)
                 {
-                    coordinate[0] = spot.Next(1, 7);
-                    coordinate[1] = spot.Next(1, 7);
+                    int[] coordinate = new int[2];
+                    coordinate[0] = generateRandomNumber(1, 7);
+                    coordinate[1] = generateRandomNumber(1, 7);
                     pitpoints.Add(coordinate);
                 }
             }
@@ -180,14 +212,21 @@ namespace FountainOfObjects.GameConrol
                 counter = 2;
                 for (int i = 0; i < counter; i++)
                 {
-                    coordinate[0] = spot.Next(1, 3);
-                    coordinate[1] = spot.Next(1, 3);
+                    int[] coordinate = new int[2];
+                    coordinate[0] = generateRandomNumber(1, 3);
+                    coordinate[1] = generateRandomNumber(1, 3);
                     pitpoints.Add(coordinate);
                 }
             }
             return pitpoints;
         }
 
+        public int generateRandomNumber(int seed, int max)
+        {
+            Random spot = new();
+            int randomSpot = spot.Next(seed, max);
+            return randomSpot;
+        }
 
         public int[] getGameGridArray(string difficulty)
         {
