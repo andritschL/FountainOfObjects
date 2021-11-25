@@ -51,6 +51,7 @@ namespace FountainOfObjects.Rooms
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("You have been killed by an Amarok.");
             Console.WriteLine("GAME OVER");
+            Console.ResetColor();
             Environment.Exit(0);
         }
     }

@@ -45,6 +45,7 @@ namespace FountainOfObjects.Rooms
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("You have fallen into a pit and died.");
             Console.WriteLine("GAME OVER");
+            Console.ResetColor();
             Environment.Exit(0);
         }
     }
