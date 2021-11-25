@@ -61,5 +61,27 @@ namespace FountainOfObjects.GameConrol
                 Console.WriteLine("Room to the " + direction + ": " + sound + " :: " + smell);
             }
         }
+
+        public List<Room> amarokNearby(List<Room> rooms, Room currentRoom)
+        {
+            List<Room> adjacentRooms = new();
+            List<Room> amarokRooms = new();
+            foreach (Room room in rooms)
+            {
+                if (room.getRoomType() == "amarok")
+                {
+                    amarokRooms.Add(room);
+                }
+            }
+            foreach (Room room in amarokRooms)
+            {
+                if (room.xCoordinate == currentRoom.xCoordinate + 1 || room.xCoordinate == currentRoom.xCoordinate - 1 || room.yCoordinate == currentRoom.yCoordinate + 1 || room.yCoordinate == currentRoom.yCoordinate - 1)
+                {
+                    adjacentRooms.Add(room);
+                }
+            }
+
+            return adjacentRooms;
+        }
     }
 }

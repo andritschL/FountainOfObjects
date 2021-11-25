@@ -42,6 +42,7 @@ namespace FountainOfObjects.Rooms
 
         public void deathByPit()
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("You have fallen into a pit and died.");
             Console.WriteLine("GAME OVER");
             Environment.Exit(0);

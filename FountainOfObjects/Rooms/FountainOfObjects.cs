@@ -45,17 +45,20 @@ namespace FountainOfObjects
         {
             if (isActivated)
             {
-                return "Turn off the fountain?";
+                return "You could turn off the fountain if you wanted, but that would be stupid. Just saying.";
             } else
             {
-                return "Activate Fountain of Objects";
+                return "You found the fountain of objects! Maybe you should activate it!";
             }
         }
 
         public override void action(FountainOfObjects fountain)
         {
             isActivated = true;
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("The fountain has been activiated.  Return to the cavern entrance safely!");
+            Console.ResetColor();
         }
 
 

@@ -37,8 +37,18 @@ namespace FountainOfObjects.Rooms
             return "None";
         }
 
+        public void playerNear(Room playerLocation, int numberOfArrows)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("It seems that you are in range to shoot an amarok! You have " + numberOfArrows + ".");
+            Console.ResetColor();
+
+
+        }
+
         public void deathByAmarok()
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("You have been killed by an Amarok.");
             Console.WriteLine("GAME OVER");
             Environment.Exit(0);

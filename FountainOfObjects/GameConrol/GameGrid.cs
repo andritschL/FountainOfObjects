@@ -177,7 +177,7 @@ namespace FountainOfObjects.GameConrol
                     counter = 11;
                 } else if (type == "amarok")
                 {
-                    counter = 6;
+                    counter = 11;
                 }
                 for (int i = 0; i < counter; i++)
                 {
@@ -197,7 +197,7 @@ namespace FountainOfObjects.GameConrol
                     counter = 6;
                 } else if (type == "amarok")
                 {
-                    counter = 3;
+                    counter = 6;
                 }
                 for (int i = 0; i < counter; i++)
                 {
@@ -210,6 +210,11 @@ namespace FountainOfObjects.GameConrol
             else
             {
                 counter = 2;
+
+                if (type == "amarok")
+                {
+                    counter = 4;
+                }
                 for (int i = 0; i < counter; i++)
                 {
                     int[] coordinate = new int[2];
