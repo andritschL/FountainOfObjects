@@ -17,6 +17,7 @@ namespace FountainOfObjects.GameConrol
         Player player = new Player();
         FountainOfObjects fountainOfObjects = new FountainOfObjects();
         CavernEntrance cavernEntrance = new CavernEntrance();
+        Clock clock = new Clock();
 
         public void startGame()
         {
@@ -34,9 +35,11 @@ namespace FountainOfObjects.GameConrol
             Console.WriteLine("To do anything else in the game, just type what you'd like to do. It's not SUPER fancy, so don't get carried away.");
             Console.WriteLine("To start, enter 'begin', or 'exit' to leave the game");
             string playerStart = Console.ReadLine();
+
             Console.Clear();
             if (playerStart == "begin")
             {
+                Console.WriteLine(clock.startTime);
                 executeGame();
             } else
             {
@@ -56,11 +59,11 @@ namespace FountainOfObjects.GameConrol
             while (gameOver == false)
             {
                 Room currentRoom = player.currentRoom;
+                clock.displayTimeInGame();
                 grid.displayGameGrid(rooms, currentRoom, gameDifficulty);
                 List<Room> adRooms = gamePlay.getAdjacentRooms(rooms, currentRoom);
                 gamePlay.displayAdjacentRooms(adRooms, currentRoom);
                 List<Room> amarokRooms = gamePlay.amarokNearby(rooms, currentRoom);
-                Console.WriteLine();
                 Console.WriteLine();
                 player.playTurn(rooms, fountainOfObjects, amarokRooms);
             }
