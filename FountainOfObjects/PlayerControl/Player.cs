@@ -13,50 +13,6 @@ namespace FountainOfObjects.PlayerControl
 
         public int numberOfArrows { get; set; } 
         public Room currentRoom { get; set; }
-        /*
-        public void playTurn(List<Room> rooms, FountainOfObjects fountain, List<Room> amarakRooms)
-        {
-            List<Room> shootingDistanceOfAmarok = amarakRooms;
-            string roomAction = currentRoom.displayActions(fountain);
-            if (roomAction != "None")
-            {
-                if (shootingDistanceOfAmarok.Count > 0 && numberOfArrows > 0)
-                {
-                    Console.WriteLine("It seems that you are in range to shoot an amarak! You have " + numberOfArrows + " arrows left.");
-                    Console.WriteLine("What would you like to do?");
-                    string playerAmChoice = Console.ReadLine();
-                    if (!playerAmChoice.Contains("move"))
-                    {
-                        Room roomWithAmarok = shootingDistanceOfAmarok[0];
-                        removeAmarokRoom(roomWithAmarok, rooms);
-                        Console.WriteLine("Amarok has been eliminaated.");
-                    }
-                }
-                Console.WriteLine("Would you like to move to a new room or " + roomAction + "?");
-                Console.WriteLine("Type 'Move' or 'Action'");
-                string playerChoice = Console.ReadLine();
-                if (playerChoice == "Move")
-                {
-                    Console.WriteLine();
-                    Console.WriteLine("Which direction would you like to move?");
-                    Console.WriteLine();
-                    string playerDirectionChoice = Console.ReadLine();
-                    moveToNewRoom(playerDirectionChoice, rooms);
-
-                } else if (playerChoice == "Action")
-                {
-                    currentRoom.action(fountain);
-                }
-            } else
-            {
-                Console.WriteLine();
-                Console.WriteLine("Which direction would you like to move?");
-                Console.WriteLine();
-                string playerDirectionChoice = Console.ReadLine();
-                moveToNewRoom(playerDirectionChoice, rooms);
-            }
-        }
-        */
         public void playTurn(List<Room> rooms, FountainOfObjects fountain, List<Room> amarokRooms)
         {
             if (amarokRooms.Count > 0 && numberOfArrows > 0)
@@ -64,7 +20,6 @@ namespace FountainOfObjects.PlayerControl
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("It seems that you are in range to shoot an amarok! You have " + numberOfArrows + ".");
                 Console.ResetColor();
-                Console.WriteLine("What would you like to do?");
             }
             if (currentRoom.displayActions(fountain) != "None")
             {
@@ -149,7 +104,13 @@ namespace FountainOfObjects.PlayerControl
         public void removeAmarokRoom(Room roomWithAmarok, List<Room> rooms)
         {
             int amarokIndex = rooms.IndexOf(roomWithAmarok);
-            Console.WriteLine(amarokIndex);
+            int x = roomWithAmarok.xCoordinate;
+            int y = roomWithAmarok.yCoordinate;
+            Room newRoom = new Room();
+            newRoom.xCoordinate = x;
+            newRoom.yCoordinate = y;
+            rooms[amarokIndex] = newRoom;
+            numberOfArrows--;
             
         }
 

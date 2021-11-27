@@ -14,9 +14,12 @@ namespace FountainOfObjects.GameConrol
         public void displayTimeInGame()
         {
             DateTime latestTime = DateTime.Now;
-            double totalTime = latestTime.Subtract(startTime).TotalMinutes;
-            
-             Console.WriteLine("Game Time: " + totalTime);
+            double totalTime = latestTime.Subtract(startTime).TotalSeconds;
+            int minutes = (int)(totalTime / 60) % 60;
+            int seconds = (int)totalTime % 60;
+            string timeToDisplay = "Game Time: " + minutes.ToString() + ":" + seconds.ToString();
+
+            Console.WriteLine(timeToDisplay);
         }
     }
 }

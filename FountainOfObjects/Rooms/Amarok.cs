@@ -29,7 +29,7 @@ namespace FountainOfObjects.Rooms
 
         public override string getRoomType()
         {
-            return "Amarok";
+            return "amarok";
         }
 
         public override string displayActions(FountainOfObjects fountain)
